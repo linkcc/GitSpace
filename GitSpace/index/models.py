@@ -4,7 +4,7 @@ from django.db import models
 class Person(models.Model):
     personID = models.AutoField(primary_key=True)
     personName = models.CharField(max_length=30)
-    personPassword = models.CharField(max_length=20)
+    personPassword = models.CharField(max_length=128)
     personMobile = models.CharField(max_length=20)
     personEmail = models.EmailField(max_length=50)
     isActive = models.BooleanField(default=True)
