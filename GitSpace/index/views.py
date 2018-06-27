@@ -12,8 +12,9 @@ def login_views(request):
         personName = request.POST.get('uname')
         personPassword = request.POST.get('upwd')
         
-        vuser = Person.objects.filter(personName=personName,personPassword=personPassword)
-        if vuser:
+        vuser = Person.objects.get(personName=personName)
+                
+        if check_password(personPassword, vuser.personPassword):
             return HttpResponse('login successfully')
         return HttpResponse('login failed!')
 
