@@ -2,11 +2,9 @@
 from django.conf.urls import url
 from .views import *
 
-#文章点赞收藏推荐三大功能
 urlpatterns = [
-    url(r'^Article',Article_views),
+    url(r'^Article',Article_views),#文章点赞收藏推荐三大功能
 ]
-
 
 urlpatterns += [
     url(r'^01_ArticleThumbUp',ArticleThumbUp_views),
@@ -18,8 +16,6 @@ urlpatterns += [
     url(r'^07_ArticleCollection',ArticleCollection_views),
 ]
 
-# 富文本编辑器wangeditor 
-# 只是测试用
 urlpatterns += [
     url(r'^wangeditor',wangeditor_views),
 ]

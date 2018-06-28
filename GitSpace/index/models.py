@@ -1,15 +1,18 @@
-# -*- coding:utf-8 -*-
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 from django.db import models
 
 # Create your models here.
 class Person(models.Model):
     personID = models.AutoField(primary_key=True)
     personName = models.CharField(max_length=30)
-    personPassword = models.CharField(max_length=128)
+    personPassword = models.CharField(max_length=20)
     personMobile = models.CharField(max_length=20)
     personEmail = models.EmailField(max_length=50)
     isActive = models.BooleanField(default=True)
     enrollDate = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return self.personName
 
@@ -27,10 +30,10 @@ class Dynamic(models.Model):
     dynamicID = models.AutoField(primary_key=True)
     sender = models.ForeignKey(Person)
     content = models.TextField()
-    createDate = models.DateTimeField(auto_now_add=True)
+    createData = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.sender.personName
+        return self.dynamicID
 
     class Meta:
         verbose_name_plural='动态列表'
@@ -38,10 +41,10 @@ class Dynamic(models.Model):
 class Article(models.Model):
     articleID = models.AutoField(primary_key=True)
     sender = models.ForeignKey(Person)
-    createDate = models.DateTimeField(auto_now_add=True)
+    createData = models.DateTimeField(auto_now_add=True)
     contentURL = models.URLField()
     articleTitle = models.CharField(max_length=30)
-    label = models.BigIntegerField()
+    label = models.BinaryField(max_length=64)
     
     def __str__(self):
         return self.articleTitle
@@ -54,11 +57,11 @@ class Idea(models.Model):
     ideaID = models.AutoField(primary_key=True)
     sender = models.ForeignKey(Person)
     content = models.TextField()
-    createDate = models.DateTimeField()
-    label = models.BigIntegerField() 
+    createData = models.DateTimeField()
+    label = models.BinaryField(max_length=64) 
 
     def __str__(self):
-        return self.sender.personName
+        return self.ideaID
 
     class Meta:
         verbose_name_plural='想法列表'
@@ -84,7 +87,7 @@ class DynamicComment(models.Model):
     commentTime = models.DateTimeField()
 
     def __str__(self):
-        return self.articleCommentID
+        return self.dynamicCommentID
 
     class Meta:
         verbose_name_plural='动态评论表'
@@ -92,55 +95,66 @@ class DynamicComment(models.Model):
 class ArticleThumbUp(models.Model) :
     likeUser=models.ForeignKey(Person)
     likeArticle=models.ForeignKey(Article)
+    def __str__(self):
+        return self.likeUser.personName
+
+    class Meta:
+        verbose_name_plural='文章点赞表'
 
 class DynamicThumbUp(models.Model) :
     likeUser=models.ForeignKey(Person)
     likeDynamic=models.ForeignKey(Dynamic)
+    
+    def __str__(self):
+        return self.likeUser.personName
+
+    class Meta:
+        verbose_name_plural='动态点赞表'
 
 class IdeaThumbUp(models.Model) :
     likeUser=models.ForeignKey(Person)
     likeIdea=models.ForeignKey(Idea)
+   
+    def __str__(self):
+        return self.likeUser.personName
+
+    class Meta:
+        verbose_name_plural='想法点赞表'
 
 class ArticleRecommend(models.Model) :
     recommendtUser=models.ForeignKey(Person)
     recommendArticle=models.ForeignKey(Article)
+    def __str__(self):
+        return self.recommendtUser.personName
+    class Meta:
+        verbose_name_plural='文章推荐表'
 
 class IdeaRecommend(models.Model) :
     recommendrecommendUser=models.ForeignKey(Person)
     recommendIdea=models.ForeignKey(Idea)
 
+    def __str__(self):
+        return self.recommendrecommendUser.personName
+
+    class Meta:
+        verbose_name_plural='想法推荐表'
+
 class IdeaCollection(models.Model) :
     collectionUser=models.ForeignKey(Person)
     collectionIdea=models.ForeignKey(Idea)
+    
+    def __str__(self):
+        return self.collectionUser.personName
+        
+    class Meta:
+        verbose_name_plural='想法收藏表'
 
 class ArticleCollection(models.Model) :
     collectionUser=models.ForeignKey(Person)
     collectionArticle=models.ForeignKey(Article)
-# class Push(models.Model):
-#     pushID = models.AutoField(primary_key=True)
-#     userID = models.ForeignKey(Person)
+    def __str__(self):
+        return self.collectionUser.personName
+    class Meta:
+        verbose_name_plural='文章收藏表'
+        
 
-    
-#     def __str__(self):
-#         return self.pushID;
-
-#     class Meta:
-#         verbose_name_plural='推送表'
-
-# class PushMessage(models.Model):
-#     pushMessageId = models.AutoField(primary_key=True)
-#     pushMessageType = models.CharField(max_length=20)
-#     pushMessageDate = models.DateField()
-#     pushMessageUserID = models.ForeignKey(Person)
-
-    
-#     def __str__(self):
-#         return self.pushMessageId;
-
-#     class Meta:
-#         verbose_name_plural='推送消息表'
-# class PushArticle(models.Model):
-#     pushMessageId 
-#     articleID
-#     personID
-#     pushData
