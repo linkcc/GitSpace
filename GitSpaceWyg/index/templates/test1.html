@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form action="publishIdea" method="post">
+    {% csrf_token %} 
+        <textarea name="ideaContent" rows="5" cols="30">  
+        </textarea>
+        <select name = 'label1'>
+            <option value="c">c</option>
+            <option value="c++">c++</option>
+            <option value="java">java</option>
+            <option value="python">python</option>
+        </select>
+        <select name = 'label2'>
+            <option value="游戏开发">游戏开发</option>
+            <option value="大数据">大数据</option>
+            <option value="人工智能">人工智能</option>
+            <option value="编程学习">编程学习</option>
+        </select>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>

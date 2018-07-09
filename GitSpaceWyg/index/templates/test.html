@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态/想法</title>
+</head>
+<body>
+    <form action="publishDynamic" method="post">
+        {% csrf_token %}
+        <textarea rows="5" cols="50" name="dynamicContent">
+        </textarea>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>

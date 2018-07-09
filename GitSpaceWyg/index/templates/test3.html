@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态想法文章</title>
+</head>
+<body>
+    {%for s in articleCommentList%}
+    {{s.commentUser.personName}}&nbsp&nbsp{{s.commentTime}}<br>
+    {{s.commentContent}}<br>
+    {%endfor%}
+</body>
+</html>

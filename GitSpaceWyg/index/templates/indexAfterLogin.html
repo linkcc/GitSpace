@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GitSpace</title>
+    <link rel="stylesheet" href="{%static 'css/index.css'%}">
+    <link rel="stylesheet" href="{%static 'css/button.css'%}">
+    <link rel="stylesheet" href="{%static 'css/font-awesome.min.css'%}">
+    <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <link rel="stylesheet" href="{%static 'css/animate.min.css'%}">
+
+    <script src="{%static 'js/jquery-1.11.3.js'%}"></script>
+    <script src="{%static 'js/index.js'%}"></script>
+    <script src="{%static 'js/comment.js'%}"></script>
+    <script src="{%static  'js/layer/layer.js'%}"></script>
+
+</head>
+
+<body>
+<!-- 动态区域 -->
+    <div id="dynamic" class="dynamicArea">
+        <a href = "javascript:void(0)" onclick = "tanchu2()">
+            <button title="关闭" class="button  button-border button-circle button-small closeButton">X</button></a>
+        <div >    
+
+            <div class="dynamicContent">
+                <form method="post" action="/publishDynamic/"　>
+                {% csrf_token %}
+                    <textarea name="dynamicContent" class="dynamicText" autofocus maxlength="233">   
+                    </textarea>
+                    <input type="submit" name=""  value="发布动态" onclick="alert('发布成功')" class="">
+                </form>
+            </div>
+        </div>
+    </div> 
+
+<!-- 想法区域 -->
+    <div id="idea" class="ideaArea">
+        <a href = "javascript:void(0)" onclick = "tanchu4()">
+            <button title="关闭" class="button  button-border button-circle button-small closeButton">X</button></a>
+        <div >    
+
+            <div class="ideaContent">
+                <form method="post" action="/publishIdea/"　>
+                {% csrf_token %}
+                    <textarea name="ideaContent" class="ideaText" autofocus maxlength="233">   
+                    </textarea>
+                    <input type="submit" name=""  value="发布想法" onclick="alert('发布成功')" class="">
+                 <select name="label1">
+                    <option value="java">java</option>
+                    <option value="c">c</option>
+                    <option value="c++">c++</option>
+                    <option value="python">python</option>
+                </select>
+                <select name="label2">
+                    <option value="大数据">大数据</option>
+                    <option value="人工智能">人工智能</option>
+                    <option value="游戏开发">机器学习</option>
+                    <option value="编程学习">编程学习</option>
+                </select>
+                </form>
+            </div>
+        </div>
+    </div> 
+    <div id="fade" class="black_overlay"></div> 
+
+<!-- banner -->
+    <div class="banner" style="background-image: url({%static 'imgs/banner2.jpg'%});">
+        <a href="/indexAfterLogin"><span>首页</span></a>
+        <div class="search bar">
+            <form id="form1">
+                <input  placeholder="Git me！" name="cname" type="text">
+                <button type="submit"></button>
+            </form>
+        </div>    
+    </div>
+
+    <div class="content">
+    <!-- 左边部分 -->
+        <div class="leftContent">
+            <div class="navi">
+            　　　<a href="/indexHot"  class="button  button-small">热榜</a>
+               <a href="/indexLike" class="button button-small">关注</a>
+               <a href="/indexRecommend" class="button button-small"">推荐</a>
+            </div>
+            <div class="recommends">
+<!-- 一个推荐 -->
+                {%for s in ideaList%}
+                <div class="recom">
+                    <div class="label"><span>想法</span></div>
+                    <div class="ID">
+                        <div class="head">
+                            <img src="{%static s.sender.personImage%}" alt="">
+                        </div>
+                    <h2>{{s.sender.personName}}</h2>
+                    </div>
+                    <div class="message">{{s.content}}</div>
+                  
+                      <div class="functions">
+                        <button title="点赞" class="button button-plain button-border button-circle  button-primary button-small"><i class="fa fa-thumbs-up"></i></button>
+                        <button title="转发" class="button button-plain button-border button-circle button-small"><i class="fa fa-reply"></i></button>
+                        <a href="{%url 'ideaCollection' s.ideaID%}"><button title="收藏" class="button button-plain button-border button-circle button-small"><i class="fa fa-star"></i></button></a>   
+                       <a href="{%url 'discuss' s.ideaID%}"><button title="参与想法" class="button button-plain button-border button-circle button-small"><i class="fa fa-plus"></i></button></a>
+                    </div>
+                </div>
+                {%endfor%}
+
+<!-- 一个推荐 -->
+
+                {%for s in dynamicList%}
+                <div class="recom">
+                    <div class="label"><span>动态</span></div>
+                    <div class="ID">
+                        <div class="head">
+                            <img src="{%static s.sender.personImage%}" alt="">
+                        </div>
+                    <h2>{{s.sender.personName}}</h2>
+                    </div>
+                    <div class="message">{{s.content}}</div>
+                  
+                      <div class="functions">
+                        <button title="点赞" class="button button-plain button-border button-circle  button-primary button-small"><i class="fa fa-thumbs-up"></i></button>
+                        <button title="评论" class="button button-large button-plain button-border button-circle button-small"><i class="fa fa-envelope"></i></button>
+                        <button title="转发" class="button button-plain button-border button-circle button-small"><i class="fa fa-reply"></i></button> 
+                    </div>
+                </div>
+                {%endfor%}
+
+<!-- 一个推荐 -->
+                <div class="recom">
+                    <div class="label"><span>文章，贪玩蓝月，传奇</span></div>
+                    <div class="ID">
+                        <div class="head">
+                            <img src="{%static 'imgs/head3.png'%}" alt="">
+                        </div>
+                        <h2>山鸡</h2>
+                    </div>
+                    <div class="message">我提剑走出新手村，前面是广阔的灌木林，里面零星的分布着几只豪猪，一名顶着“清歌曼曼”字眼的女性玩家正用手里的法杖奋力地敲打着豪猪，背对着我，身姿婀娜柔软。我一脸黑线，这法杖不是远程攻击的武器吗？眼睛继续盯着那婀娜柔软的身姿….不对，是身姿后面的豪猪，我一个鉴定投过去，豪猪的属性显示在我的眼前。
+
+                    看起来很温顺啊！
+                    </div>
+                    <div class="functions">
+                        <button title="点赞" class="button button-plain button-border button-circle  button-primary button-small"><i class="fa fa-thumbs-up"></i></button>
+                        <button title="评论" class="button button-large button-plain button-border button-circle button-small"><i class="fa fa-envelope"></i></button>                
+                        <button title="转发" class="button button-large button-plain button-border button-circle button-small"><i class="fa fa-reply"></i></button>
+                        <button title="收藏" class="button button-large button-plain button-border button-circle button-small"><i class="fa fa-star"></i></button>
+                    </div>
+                 </div>       
+
+            </div>
+        </div>
+        <div class="rightContent">
+            <div class="loginAndRegister" style="background-image: url({%static 'imgs/leftimg.jpg'%});background-size:100% 100%;" id="person">
+                    <div class="head">
+                        <section class="box">
+                            <div class="avatar">
+                              <a href="/person/indexPerson/" style="background-image: url({%static person.personImage%}); background-size:contain;"><span>{{person.personName}}</span></a>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="leftFunctions">
+                        <div class="article"><a href=""><img src="{%static 'imgs/article.jpg'%}" alt="" height="40" width="40" ></a><span>写文章</span></div>
+                        <div class="thought"><a href="javascript:void(0)" onclick = "tanchu3()"><img src="{%static 'imgs/thought.jpg'%}" alt="" height="40" width="50" ></a><span>写想法</span></div>
+                        <div class="news"><a href = "javascript:void(0)" onclick = "tanchu()"><img src="{%static 'imgs/news.jpg'%}" alt="" height="40" width="40" ></a><span>写动态</span></div>
+                        <div class="collection"><a href="/person/personCollection/"><img src="{%static 'imgs/collection.jpg'%}" alt="" height="40" width="40" ></a><span>我的收藏</span></div>
+                        <div class="like"><a href="/person/personFollow/"><img src="{%static 'imgs/like2.jpg'%}" alt="" height="40" width="40" ></a><span>我的关注</span></div>
+                        <div class="logout"><a href="/logOut/" ><img src="{%static 'imgs/logout.jpg'%}" alt="" height="40" width="40" ></a><span>退出登录</span></div>
+                    </div>
+                        
+
+            </div>
+            <div class="loginAndRegister" style="background-image: url({%static 'imgs/welcome.jpg'%});" id = "nologin">
+                <div class="login">
+                    <a  href="/login" class="button button-block login-button" style="color:white">登录</a>
+                    <a href="/register" class="button button-block" >现在注册</a>
+                </div>
+            </div>
+            <script>
+            if ({{person.personID}}) {
+            document.getElementById("person").style.display='block';
+            document.getElementById('nologin').style.display='none';
+            }
+            </script>
+            <div class="ads" style="background-image: url({%static 'imgs/ad.jpg'%});">
+            </div>
+
+        </div>
+
+    </div>
+    <footer>
+    </footer>
+</body>
+</html>

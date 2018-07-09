@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>想法参与</title>
+    <link rel="stylesheet" href="{%static 'css/discuss.css'%}">
+    <link rel="stylesheet" href="{%static 'css/button.css'%}">
+    <link rel="stylesheet" href="{%static 'css/font-awesome.min.css'%}">
+    <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    <script src="js/jquery-1.11.3.js"></script>
+</head>
+
+<body>
+<!-- 横幅 -->
+    <div class="banner" style="background-image: url({%static 'imgs/banner2.jpg'%});">
+            <a href="/indexAfterLogin"><span>首页</span></a>
+
+        <div class="search bar">
+            <form>
+                <input placeholder="Git me！" name="cname" type="text">
+                <button type="submit"></button>
+            </form>
+        </div>
+    </div>
+<!-- 左边部分 -->
+    <div class="content">
+        <div class="title"><span style="font-size:20px;color:grey;">想法题目</span><span style="font-size:25px;">前3个特戒，很轻松到手了，最难也就是充个VIP2，50块钱吧，也给的起。好了，到了第四个麻痹戒指，什么？只能去抽奖才能获得！这画风怎么突然换了，这还能玩得起吗？</span></div>
+
+        <div class="leftContent">
+<!-- 一个消息 -->
+            <div class="oneMsg">
+                <div class="head">
+                    <img src="{%static 'imgs/head.png'%}">
+                </div>      
+                <div class="msgContainer">
+                    <div class="nameAndTime"><span style="font-size:30px">乌蝇哥</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2018年5月23日　下午3:52</span></div>
+                    <div class="msgContent">其实许多玩法都可以获得首饰，只不过首饰的爆率很低，很多人还以为不会爆首饰呢。我们可以在世界BOSS、猎魔行动、副本、恶魔广场、卡利玛神庙这些活动中获得装备，如果你的运气很好，就有可能获得项链和戒指。当然这个爆率非常低，即便爆出来了，也可能只是绿色、蓝色、紫色的装备，如果你是贵族，还可能直接就把它们给熔炼掉了。</div>
+                </div>
+            </div>
+<!-- 一个消息 -->
+            <div class="oneMsg">
+                <div class="head">
+                    <img src="{%static 'imgs/head2.png'%}">
+                </div>      
+                <div class="msgContainer">
+                    <div class="nameAndTime"><span style="font-size:30px">渣渣辉</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2018年5月27日　上午2:52</span></div>
+                    <div class="msgContent">
+                            传送戒指获得途径：
+                            1. 活动期间，在游戏内沃玛寺庙中打怪可随机掉落传送戒指碎片，游戏内所有区服的玩家一起参与排名，活动结束时收集数量为TOP6的玩家将会获得
+                            2.传送戒指碎片可通过打怪掉落，也可通过击杀已有该道具的其他玩家爆出，还能在交易行进行买卖
+                    </div>
+                </div>
+            </div>
+<!-- 一个消息 -->
+            <div class="oneMsg">
+                <div class="head">
+                    <img src="{%static 'imgs/head3.png'%}">
+                </div>      
+                <div class="msgContainer">
+                    <div class="nameAndTime"><span style="font-size:30px">山鸡</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2018年6月1日　下午6:52</span></div>
+                    <div class="msgContent">首先说下得到麻痹戒指的个人心得 我是开宝箱开出来的。说实话几率低的吓人。要用数值表示估计是千分之一。总结了下哪里最容易开出麻痹！！
+                    第一。赤月篇白日门出生地五点方向那两个门卫那里（任何地图开宝箱开出东西的几率都不一样！白日门的经验钱比较多，也比较好开）</div>
+                </div>
+            </div>
+
+<!-- 富文本区域 -->
+            <div class="makeComment"><img src="{%static 'imgs/comment.png'%}"></div>
+
+        </div>
+<!-- 右边部分 -->
+    
+        <div class="rightContent">
+            <div style="margin-bottom:20px;"><span style="font-size: 20px; color: grey;">想法参与者</span></div>
+            <div class="memberContainer">
+<!-- 一个想法参与者 -->
+                <div class="oneMember">
+                    <div class="heads"><img src="{%static 'imgs/head.png'%}"></div>
+                    <div class="profile">
+                        <div class="name"><span style="font-size: 20px;">乌蝇哥</span></div>
+                        <div class="describe"><span>乌蝇是旺角的黑帮打手，和阿华情同手足，乌蝇一直梦想着有朝一日能坐上“头目”这把交椅.</span></div>
+                    </div>
+                </div>
+
+                 <div class="oneMember">
+                    <div class="heads"><img src="{%static 'imgs/head2.png'%}"></div>
+                    <div class="profile">
+                        <div class="name"><span style="font-size: 20px;">渣渣辉</span></div>
+                        <div class="describe"><span>小赌徒，到处招摇撞骗，但是很崇拜阿King，King出狱后，他做了King的小弟，跟他学赌马和赌术，一起混江湖。</span></div>
+                    </div>
+                </div>
+<!-- 一个想法参与者 -->
+
+                 <div class="oneMember">
+                    <div class="heads"><img src="{%static 'imgs/head3.png'%}"></div>
+                    <div class="profile">
+                        <div class="name"><span style="font-size: 20px;">山鸡</span></div>
+                        <div class="describe"><span>《古惑仔》漫画里的山鸡真名“赵山河”，为台湾第一大帮“毒蛇帮”帮主，“八大山堂”“太华山堂”堂主。</span></div>
+                    </div>
+                </div>
+
+            </div>
+<!-- 管理参与者 -->
+            <div class="memberAdmin">
+                <button title="邀请" class="button button-large button-plain button-border button-circle button-small"><i class="fa fa-plus"></i></button>
+                <button title="踢出" class="button button-large button-plain button-border button-circle button-small"><i class="fa fa-minus"></i></button> 
+                <button title="解散想法" class="button button-large button-plain button-border button-circle button-small">X</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+    </footer>
+</body>
+</html>
